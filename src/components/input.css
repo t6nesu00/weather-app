@@ -1,0 +1,9 @@
+
+.inputForm {
+    display: flex;
+    height: 10vh;
+    background-color: brown;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
