@@ -1,21 +1,35 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const baseURL = "http://api.weatherapi.com/v1/current.xml?key=2532b292b1414fcba1463833222505&q=London";
 
 const WeatherResult = () => {
+
     const [data, setData] = useState([]);
+    const cityName = "London";
+    const apiKey = process.env.REACT_APP_API_KEY;
     //get data from API
-        axios.get(`${baseURL}`)
-        .then((response) => {
-            setData(response); 
-        })
-        .catch(error => console.log(`Error: ${error}`));
+    const getWeatherResult = (cityName) => {
+        const baseURL = "https://api.openweathermap.org/data/2.5/weather?q=london&appid=" + apiKey;
+        axios.get(baseURL)
+            .then((res) => {
+                setData(res.data);
+            })
+            .catch((err) => {
+                console.log(`Error: ${err}`)
+            })
+    }
+
+    useEffect(() => {
+        getWeatherResult("London");
+    }, [])
     
     return(
         <div>
             <h1>We are fetching...</h1>
-            <p>{setData}</p>
+            <h1>{data.name}</h1>
+            <h3>{data.main.temp}°F</h3>
+            <h4>Feels like: {data.main.feels_like}°F</h4>
+            <h3>{data.weather[0].main}</h3>
         </div>
     );
 }
