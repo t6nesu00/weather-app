@@ -1,4 +1,10 @@
 * {
-  background-color: azure;
   margin: 5px;
+}
+.App {
+  background-image: url("./assests/rain-image.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
